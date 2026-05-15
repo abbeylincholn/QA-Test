@@ -1,0 +1,51 @@
+{
+  "newUser": {
+    "firstName": "Abiodun",
+    "lastName": "Ezekiel",
+    "email": "abbey.qatest.fresh02@gmail.com",
+    "password": "abbey100",
+    "dateOfBirth": {
+      "day": "10",
+      "month": "June",
+      "year": "1995"
+    },
+    "address": {
+      "firstName": "Abiodun",
+      "lastName": "Ezekiel",
+      "company": "Interaction Tech",
+      "address1": "10 Downing Street",
+      "address2": "Suite 4",
+      "country": "United States",
+      "state": "New York",
+      "city": "New York",
+      "zipCode": "10001",
+      "mobileNumber": "101011111"
+    }
+  },
+  "payment": {
+    "cardName": "Abiodun Ezekiel",
+    "cardNumber": "4111111111111111",
+    "cardCvc": "123",
+    "expiryMonth": "12",
+    "expiryYear": "2027"
+  },
+  "search": {
+    "productName1": "Tshirt",
+    "productName2": "Jeans",
+    "expectedResultsContain": "Tshirt"
+  },
+  "products": {
+    "firstProduct": 0,
+    "secondProduct": 1,
+    "productsToAdd": [0, 1],
+    "productsToAdd2": [0, 1, 2]
+  },
+  "count": {
+    "expectedCartItems1": 1,
+    "expectedCartItems2": 2
+  },
+  "invalidCredentials": {
+    "email": "abbe1@gmail.com",
+    "password": "123abc"
+  }
+}
