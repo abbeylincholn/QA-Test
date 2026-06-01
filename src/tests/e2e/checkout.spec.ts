@@ -16,8 +16,8 @@ test('a logged in user can add a product and complete the checkout', async ({ pa
 
   await loginPage.goto();
   await loginPage.loginWithValidCredentials({
-    username: process.env.AE_USERNAME!,
-    password: process.env.AE_PASSWORD!,
+    username: process.env.USER!,
+    password: process.env.PWORD!,
   });
 
   await cartPage.clearCart();
