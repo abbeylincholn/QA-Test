@@ -16,10 +16,10 @@ export class BasePage {
   }
 
   async dismissCookieConsent(): Promise<void> {
-    const visible = await this.consent.isVisible({ timeout: 3000 }).catch(() => false);
+    const visible = await this.consent.isVisible({ timeout: 6000 }).catch(() => false);
     if (visible) {
       await this.consent.click();
-      await this.consentRoot.waitFor({ state: 'hidden' });
+      await this.consentRoot.waitFor({ state: 'hidden', timeout: 10000 });
     }
   }
 

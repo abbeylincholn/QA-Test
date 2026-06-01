@@ -5,8 +5,8 @@ setup('authenticate', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
   await loginPage.loginWithValidCredentials({
-    username: process.env.AE_USERNAME!,
-    password: process.env.AE_PASSWORD!,
+    username: process.env.USER!,
+    password: process.env.PWORD!
   });
   await page.context().storageState({ path: 'storageState.json' });
 });

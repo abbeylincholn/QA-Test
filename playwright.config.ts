@@ -11,7 +11,7 @@ export default defineConfig({
   reporter: [
     ['line'],
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['allure-playwright', { outputFolder: 'allure-results', suiteTitle: false }]
+   // ['allure-playwright', { outputFolder: 'allure-results', suiteTitle: false }]
   ],
   use: {
     baseURL: process.env.BASE_URL ?? 'https://automationexercise.com',
@@ -36,9 +36,8 @@ export default defineConfig({
       testMatch: [
         '**/e2e/add-to-cart.spec.ts',
         '**/e2e/search.spec.ts'
-      ],
-      dependencies: ['auth'],
-      use: { storageState: 'storageState.json' }
+      ],      
+      use: { storageState: { cookies: [], origins: [] } }
     },
     {
       name: 'register',

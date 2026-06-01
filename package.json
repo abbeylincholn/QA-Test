@@ -2,16 +2,21 @@
   "name": "interactive-qa-v2",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "test": "playwright test",
-    "test:ui": "playwright test --project=ui-tests",
-    "test:register": "playwright test --project=register",
-    "report": "playwright show-report",
-    "allure": "allure serve allure-results"
-  },
+"scripts": {
+  "test": "playwright test",
+  "test:ui": "playwright test --project=ui-tests",
+  "test:register": "playwright test --project=register",
+  "test:auth": "playwright test --project=auth",
+  "test:bs:ui": "browserstack-node-sdk playwright test src/tests/e2e/add-to-cart.spec.ts src/tests/e2e/search.spec.ts",
+  "test:bs:register": "browserstack-node-sdk playwright test src/tests/e2e/register.spec.ts src/tests/e2e/checkout.spec.ts",
+  "test:bs": "browserstack-node-sdk playwright test src/tests/e2e",  
+  "report": "playwright show-report",
+  "allure": "allure serve allure-results"
+},
   "devDependencies": {
-    "@playwright/test": "^1.44.0",
-    "allure-playwright": "^3.0.0",
+    "@playwright/test": "1.48.0",
+    "allure-playwright": "^3.9.0",
+    "browserstack-node-sdk": "^1.55.4",
     "dotenv": "^16.4.5",
     "typescript": "^5.4.5"
   }
