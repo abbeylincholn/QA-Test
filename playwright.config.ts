@@ -8,6 +8,7 @@ export default defineConfig({
   testDir: './src/tests',
   timeout: 40_000,
   expect: { timeout: 8_000 },
+  retries: 1,
   reporter: [
     ['line'],
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
@@ -16,7 +17,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL ?? 'https://automationexercise.com',
     browserName: 'chromium',
-    headless: false,
+    headless: true,
     trace: 'on',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

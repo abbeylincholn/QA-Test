@@ -1,0 +1,76 @@
+name: BrowserStack Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  playwright-local:
+    name: Run Playwright Tests Locally
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Install Playwright browsers
+        run: yarn playwright install chromium
+
+      - name: Run all Playwright tests
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
+          USER: ${{ secrets.USER }}
+          PWORD: ${{ secrets.PWORD }}
+        run: yarn test
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+  browserstack:
+    name: Run Tests on BrowserStack
+    runs-on: ubuntu-latest
+    needs: playwright-local
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests on BrowserStack
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BASE_URL: ${{ vars.BASE_URL }}
+          USER: ${{ secrets.USER }}
+          PWORD: ${{ secrets.PWORD }}
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: yarn test:bs
+
+      - name: Upload BrowserStack report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browserstack-report
+          path: playwright-report/
